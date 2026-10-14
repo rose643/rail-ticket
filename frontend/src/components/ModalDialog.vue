@@ -1,0 +1,2 @@
+<script setup lang="ts">import { X } from 'lucide-vue-next'; defineProps<{ open: boolean; title: string }>(); defineEmits<{ close: [] }>()</script>
+<template><Teleport to="body"><div v-if="open" class="modal-mask" @click.self="$emit('close')"><section class="modal"><header><h2>{{ title }}</h2><button class="icon-btn" @click="$emit('close')"><X /></button></header><div class="modal-body"><slot /></div></section></div></Teleport></template>

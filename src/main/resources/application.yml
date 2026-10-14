@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: rail-ticket
+  profiles:
+    default: dev
+  task:
+    scheduling:
+      pool:
+        size: 2
+
+server:
+  port: ${SERVER_PORT:8080}
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+
+security:
+  jwt:
+    secret: ${JWT_SECRET}
+    issuer: rail-ticket
+    access-expire-minutes: ${JWT_ACCESS_EXPIRE_MINUTES:30}
+    refresh-expire-days: ${JWT_REFRESH_EXPIRE_DAYS:7}
+
+order:
+  payment-timeout-minutes: ${ORDER_PAYMENT_TIMEOUT_MINUTES:15}
+  outbox:
+    publish-interval-ms: 5000
+    initial-delay-ms: 5000
+    claim-timeout-seconds: 30
+  timeout:
+    scan-interval-ms: 60000
+    scan-initial-delay-ms: 60000
+
+train-search:
+  cache:
+    ttl-seconds: ${TRAIN_SEARCH_CACHE_TTL_SECONDS:10}
+    lock-ttl-seconds: 5
+    wait-millis: 50
